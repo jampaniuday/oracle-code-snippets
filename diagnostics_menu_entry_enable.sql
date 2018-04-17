@@ -2,19 +2,21 @@ DECLARE
 
     l_level_name VARCHAR2(100);
     l_level_value_name VARCHAR2(100);
-    l_level_value NUMBER;
+    l_level_value NUMBER(10);
     
     l_progress_flag BOOLEAN;
 
 begin
 
-  -- APPL, RESP or USER
-  l_level_name := 'USER';
+-- APPL, RESP or USER
+l_level_name := 'USER';
 
-  -- Application, Responsibility or User Name
-  l_level_value_name := upper(&level_value);
+-- Application, Responsibility or User Name
+l_level_value_name := '&level_value_name';
 
-  if l_level_value = 'USER' THEN
+l_level_value_name := upper(l_level_value_name);
+
+if l_level_name = 'USER' THEN
     
     SELECT user_id
     INTO l_level_value
@@ -23,10 +25,10 @@ begin
     
     l_progress_flag := TRUE;
     
-  else
+else
     l_progress_flag := FALSE;
     
-  end if;
+end if;
 
 if l_progress_flag THEN
 
